@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dragon Tiger Predictor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 400px;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007BFF;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .result {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Dragon Tiger Predictor</h2>
+    <textarea id="history" placeholder="Tiger\nDragon\nTiger\n..."></textarea>
+    <button onclick="predictNext()">Predict Next</button>
+    <div class="result" id="prediction"></div>
+  </div>
+
+  <script>
+    function predictNext() {
+      const data = document.getElementById('history').value.trim().split(/\n|\s+/);
+      let dragonCount = 0;
+      let tigerCount = 0;
+
+      data.forEach(entry => {
+        if (entry.toLowerCase() === 'dragon') dragonCount++;
+        else if (entry.toLowerCase() === 'tiger') tigerCount++;
+      });
+
+      const prediction = dragonCount > tigerCount ? 'Tiger' : 'Dragon';
+      document.getElementById('prediction').innerText = `Next Prediction: ${prediction}`;
+    }
+  </script>
+</body>
+</html>
